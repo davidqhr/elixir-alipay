@@ -20,7 +20,7 @@ defmodule Alipay.Mapi do
     } |> Map.merge(params)
 
     params = sign(policy, params)
-    URI.encode_query(params)
+    "#{@url}?#{URI.encode_query(params)}"
   end
 
   def sign(policy, params) do
