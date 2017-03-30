@@ -28,7 +28,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 ## Usage
 
 ```elixir
-policy = Alipay.Mapi.Policy(pid: "", key: "", sign_type: "MD5")
+policy = %Alipay.Mapi.Policy{ pid: "", key: "", sign_type: "MD5" }
 
 url = Alipay.Mapi.create_direct_pay_by_user_url(policy, %{
   out_trade_no: "no",
