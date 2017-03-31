@@ -76,19 +76,4 @@ defmodule Alipay.Mapi do
     |> Map.put(:sign_type, policy.sign_type)
     |> Map.put(:sign, sign)
   end
-
-  def sign(policy, params) do
-    joined_string = Enum.map(params, fn({k, v}) ->
-      "#{k}=#{v}"
-    end) |> Enum.join("&")
-
-    sign = case policy.sign_type do
-      "MD5" -> "#{joined_string}#{policy.key}" |> :erlang.md5 |> Base.encode16 |> String.downcase
-      "RSA" -> Alipay.Utils.private_key_sign(joined_string, :sha1, policy.private_key)
-    end
-
-    params
-    |> Map.put(:sign_type, policy.sign_type)
-    |> Map.put(:sign, sign)
-  end
 end
